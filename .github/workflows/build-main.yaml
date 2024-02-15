@@ -13,11 +13,11 @@ jobs:
     needs: load-env
     runs-on: ubuntu-latest
     steps:
-      - name: Free disk space
-        uses: ./.github/actions/free-disk-space
-
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Free disk space
+        uses: ./.github/actions/free-disk-space
 
       - name: Run setup script
         run: |
