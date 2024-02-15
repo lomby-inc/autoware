@@ -12,7 +12,6 @@ jobs:
   build-main:
     needs: load-env
     runs-on: ubuntu-latest
-    container: ${{ needs.load-env.outputs.base-image }}
     steps:
       - name: Free disk space
         uses: ./.github/actions/free-disk-space
