@@ -1,6 +1,9 @@
 name: docker-build-and-push-main
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: 0 0 1,15 * *
   workflow_dispatch:
@@ -8,10 +11,15 @@ on:
       publish_packages:
         description: 'Publish packages to GitHub Package Registry'
         required: true
+        default: true
+        type: boolean
+      release_as_latest:
+        description: 'Release as latest'
+        required: true
         default: false
         type: boolean
       release_version:
-        description: 'Release version(If it is a release, specify the tag name for it)'
+        description: 'Release version(If release, specify the tag name for it)'
         required: false
         default: ''
         type: string

@@ -33,10 +33,11 @@ runs:
       id: set-docker-tags
       run: |
         tags=()
-        if [ "${{ github.event_name }}" == "workflow_dispatch" and -n "${{ inputs.release_version }}"]; then
-            tags+=("${{ inputs.release_version }}")
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ -n "${{ github.event.inputs.release_version }}" ]; then
+            tags+=("${{ github.event.inputs.release_version }}")
         else
             tags+=("{{date 'YYYYMMDD'}}")
+            tags+=("latest")
         fi
 
         # Output multiline strings: https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
@@ -54,9 +55,8 @@ runs:
         tags: ${{ steps.set-docker-tags.outputs.tags }}
         bake-target: docker-metadata-action-prebuilt
         flavor: |
-          latest=true
+          latest=false
           suffix=-prebuilt${{ inputs.tag-suffix }}
-
 
     - name: Docker meta for devel
       id: meta-devel
@@ -66,9 +66,8 @@ runs:
         tags: ${{ steps.set-docker-tags.outputs.tags }}
         bake-target: docker-metadata-action-devel
         flavor: |
-          latest=true
+          latest=false
           suffix=-devel${{ inputs.tag-suffix }}
-        
 
     - name: Docker meta for runtime
       id: meta-runtime
@@ -78,8 +77,9 @@ runs:
         tags: ${{ steps.set-docker-tags.outputs.tags }}
         bake-target: docker-metadata-action-runtime
         flavor: |
-          latest=${{ github.event_name == 'workflow_dispatch' && inputs.release_version != '' }}
+          latest=${{ github.event.inputs.release_as_latest }}
           suffix=-runtime${{ inputs.tag-suffix }}
+      if: ${{ github.event_name == 'workflow_dispatch' }}
 
     - name: Login to GitHub Container Registry
       if: ${{ github.event_name != 'pull_request' }}
@@ -93,7 +93,24 @@ runs:
       uses: docker/bake-action@v3
       with:
         # Checking event_name for https://github.com/autowarefoundation/autoware/issues/2796
-        push: ${{ github.event_name == 'schedule' || github.ref_name == github.event.repository.default_branch || github.event_name == 'push' || github.event.inputs.publish_packages }}
+        push: true
+        files: |
+          docker/${{ inputs.bake-target }}/docker-bake.hcl
+          ${{ steps.meta-prebuilt.outputs.bake-file }}
+          ${{ steps.meta-devel.outputs.bake-file }}
+        targets: |
+          prebuilt
+          devel
+        provenance: false
+        set: |
+          ${{ inputs.build-args }}
+      if: ${{ github.event_name != 'workflow_dispatch' }}
+
+    - name: Release version
+      uses: docker/bake-action@v3
+      with:
+        # Checking event_name for https://github.com/autowarefoundation/autoware/issues/2796
+        push: ${{ github.event.inputs.publish_packages }}
         files: |
           docker/${{ inputs.bake-target }}/docker-bake.hcl
           ${{ steps.meta-devel.outputs.bake-file }}
@@ -102,3 +119,4 @@ runs:
         provenance: false
         set: |
           ${{ inputs.build-args }}
+      if: ${{ github.event_name == 'workflow_dispatch' }}
