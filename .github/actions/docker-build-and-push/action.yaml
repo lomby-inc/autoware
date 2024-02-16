@@ -149,3 +149,4 @@ runs:
         retention-days: 7
         compression-level: 6
         overwrite: true
+        if-no-files-found: error
