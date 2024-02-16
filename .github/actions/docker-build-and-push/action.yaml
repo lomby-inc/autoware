@@ -33,12 +33,15 @@ runs:
       id: set-docker-tags
       run: |
         tags=()
-        if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ -n "${{ github.event.inputs.release_version }}" ]; then
-            tags+=("${{ github.event.inputs.release_version }}")
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            if [ "${{ github.event.inputs.publish_packages }}" == "true" ]; then
+                tags+=("${{ github.event.inputs.release_version }}")
+                tags+=("latest")
+            fi
         else
-            tags+=("{{date 'YYYYMMDD'}}")
             tags+=("latest")
         fi
+        tags+=("{{date 'YYYYMMDD'}}")
 
         # Output multiline strings: https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
         EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
@@ -70,6 +73,7 @@ runs:
           suffix=-devel${{ inputs.tag-suffix }}
 
     - name: Docker meta for runtime
+      if: ${{ github.event_name == 'workflow_dispatch' }}
       id: meta-runtime
       uses: docker/metadata-action@v4
       with:
@@ -77,9 +81,8 @@ runs:
         tags: ${{ steps.set-docker-tags.outputs.tags }}
         bake-target: docker-metadata-action-runtime
         flavor: |
-          latest=${{ github.event.inputs.release_as_latest }}
+          latest=${{ github.event.inputs.publish_packages }}
           suffix=-runtime${{ inputs.tag-suffix }}
-      if: ${{ github.event_name == 'workflow_dispatch' }}
 
     - name: Login to GitHub Container Registry
       if: ${{ github.event_name != 'pull_request' }}
@@ -89,7 +92,8 @@ runs:
         username: ${{ github.repository_owner }}
         password: ${{ github.token }}
 
-    - name: Build and push
+    - name: Build and Push prebuilt and devel
+      if: ${{ github.event_name != 'workflow_dispatch' }}
       uses: docker/bake-action@v3
       with:
         # Checking event_name for https://github.com/autowarefoundation/autoware/issues/2796
@@ -104,13 +108,12 @@ runs:
         provenance: false
         set: |
           ${{ inputs.build-args }}
-      if: ${{ github.event_name != 'workflow_dispatch' }}
 
-    - name: Release version
+    - name: Build and Publish Release to GitHub Container Registry
+      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish_packages }}
       uses: docker/bake-action@v3
       with:
-        # Checking event_name for https://github.com/autowarefoundation/autoware/issues/2796
-        push: ${{ github.event.inputs.publish_packages }}
+        push: true
         files: |
           docker/${{ inputs.bake-target }}/docker-bake.hcl
           ${{ steps.meta-devel.outputs.bake-file }}
@@ -119,4 +122,30 @@ runs:
         provenance: false
         set: |
           ${{ inputs.build-args }}
-      if: ${{ github.event_name == 'workflow_dispatch' }}
+    
+    - name: Build and Save Artifacts
+      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish_packages != true}}
+      uses: docker/bake-action@v3
+      with:
+        push: false
+        files: |
+          docker/${{ inputs.bake-target }}/docker-bake.hcl
+          ${{ steps.meta-devel.outputs.bake-file }}
+          ${{ steps.meta-prebuilt.outputs.bake-file }}
+          ${{ steps.meta-runtime.outputs.bake-file }}
+        provenance: false
+        set: |
+          ${{ inputs.build-args }}
+          prebuilt.output=type=docker,dest=/tmp/prebuilt.tar
+          devel.output=type=docker,dest=/tmp/devel.tar
+          runtime.output=type=docker,dest=/tmp/runtime.tar
+
+    - name: Upload Artifacts
+      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish_packages != true }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: docker-images
+        path: /tmp/*.tar
+        retention-days: 7
+        compression-level: 6
+        overwrite: true
