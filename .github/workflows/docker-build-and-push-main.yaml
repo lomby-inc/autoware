@@ -9,17 +9,12 @@ on:
   workflow_dispatch:
     inputs:
       publish_packages:
-        description: 'Publish packages to GitHub Package Registry'
-        required: true
-        default: true
-        type: boolean
-      release_as_latest:
-        description: 'Release as latest'
+        description: 'Publish packages to Registry(Check, if release)'
         required: true
         default: false
         type: boolean
       release_version:
-        description: 'Release version(If release, specify the tag name for it)'
+        description: 'Release Version(Semver, if release)'
         required: false
         default: ''
         type: string
@@ -38,12 +33,20 @@ jobs:
             base_image_env: base_image
             lib_dir: x86_64
             setup-args: --no-nvidia
-            additional-tag-suffix: ""
+            additional-tag-suffix: -nocuda
           - name: cuda
             base_image_env: base_image
             lib_dir: x86_64
-            additional-tag-suffix: -cuda
+            additional-tag-suffix: ""
     steps:
+      - name: Check input conditions
+        run: |
+          if [[ ${{ github.event.inputs.publish_packages }} == 'true' ]]; then
+            if [[ -z "${{ github.event.inputs.release_version }}" ]]; then
+              echo "Error: 'release_version' is required when 'publish_packages' is true."
+              exit 1
+            fi
+          fi
       - name: Check out repository
         uses: actions/checkout@v4
 
