@@ -68,7 +68,7 @@ runs:
           suffix=-devel${{ inputs.tag-suffix }}
 
     - name: Docker meta for runtime
-      if: ${{ github.event_name == 'workflow_dispatch' }} || ( ${{ github.event_name == "push" && github.ref_type == "tag" }} )
+      if: ${{ github.event_name == 'workflow_dispatch' }} || ${{ (github.event_name == 'push' && github.ref_type == 'tag') }}
       id: meta-runtime
       uses: docker/metadata-action@v4
       with:
@@ -76,7 +76,7 @@ runs:
         tags: ${{ steps.set-docker-tags.outputs.tags }}
         bake-target: docker-metadata-action-runtime
         flavor: |
-          latest=${{ github.event_name == "push" && github.ref_type == "tag" }}
+          latest=${{ github.event_name == 'push' && github.ref_type == 'tag' }}
           suffix=-runtime${{ inputs.tag-suffix }}
 
     - name: Login to GitHub Container Registry
@@ -88,7 +88,7 @@ runs:
         password: ${{ github.token }}
 
     - name: Build and Push - prebuilt and devel
-      if: ${{ (github.event_name == "push" && github.ref_type == "branch") || github.event_name == "schedule"  }}
+      if: ${{ (github.event_name == 'push' && github.ref_type == 'branch') || github.event_name == 'schedule' }}
       uses: docker/bake-action@v3
       with:
         # Checking event_name for https://github.com/autowarefoundation/autoware/issues/2796
