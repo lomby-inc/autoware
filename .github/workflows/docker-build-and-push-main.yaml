@@ -1,23 +1,25 @@
+# workflow_dispatch: Build all. No publish to registry; save as tarball.
+# schedule: Build only devel and prebuilt. TAGS: date, latest
+# push-branch: Build only devel and prebuilt. TAGS: date, latest
+# push-tag: Build all. TAGS: version, date, latest
+
 name: docker-build-and-push-main
 
 on:
   push:
+    tags:
+      - 'adkit-v*.*.*'
     branches:
       - main
   schedule:
     - cron: 0 0 1,15 * *
   workflow_dispatch:
     inputs:
-      publish_packages:
-        description: 'Publish packages to Registry(Check, if release)'
+      save-artifacts:
+        description: 'Save artifacts to Github Actions'
         required: true
-        default: false
+        default: true
         type: boolean
-      release_version:
-        description: 'Release Version(Semver, if release)'
-        required: false
-        default: ''
-        type: string
 
 jobs:
   docker-build-and-push-main:

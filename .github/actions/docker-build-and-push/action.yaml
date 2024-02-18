@@ -27,21 +27,16 @@ runs:
         sudo apt-get -y install jq
       shell: bash
 
-    # workflow_dispatch: latest, release_version
-    # schedule: date
     - name: Set Docker tags
       id: set-docker-tags
       run: |
         tags=()
-        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            if [ "${{ github.event.inputs.publish_packages }}" == "true" ]; then
-                tags+=("${{ github.event.inputs.release_version }}")
-                tags+=("latest")
-            fi
-        else
-            tags+=("latest")
+        if [ "${{ github.event_name }}" == "push" ] && [ "${{ github.ref_type }}" == "tag" ]; then
+            tags+=("$(echo "${{ github.ref }}" | sed -E 's/.*([vV][0-9]+\.[0-9]+\.[0-9]+).*/\1/')")
         fi
+
         tags+=("{{date 'YYYYMMDD'}}")
+        tags+=("latest")
 
         # Output multiline strings: https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
         EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
@@ -73,7 +68,7 @@ runs:
           suffix=-devel${{ inputs.tag-suffix }}
 
     - name: Docker meta for runtime
-      if: ${{ github.event_name == 'workflow_dispatch' }}
+      if: ${{ github.event_name == 'workflow_dispatch' }} || ( ${{ github.event_name == "push" && github.ref_type == "tag" }} )
       id: meta-runtime
       uses: docker/metadata-action@v4
       with:
@@ -81,7 +76,7 @@ runs:
         tags: ${{ steps.set-docker-tags.outputs.tags }}
         bake-target: docker-metadata-action-runtime
         flavor: |
-          latest=${{ github.event.inputs.publish_packages }}
+          latest=${{ github.event_name == "push" && github.ref_type == "tag" }}
           suffix=-runtime${{ inputs.tag-suffix }}
 
     - name: Login to GitHub Container Registry
@@ -92,8 +87,8 @@ runs:
         username: ${{ github.repository_owner }}
         password: ${{ github.token }}
 
-    - name: Build and Push prebuilt and devel
-      if: ${{ github.event_name != 'workflow_dispatch' }}
+    - name: Build and Push - prebuilt and devel
+      if: ${{ (github.event_name == "push" && github.ref_type == "branch") || github.event_name == "schedule"  }}
       uses: docker/bake-action@v3
       with:
         # Checking event_name for https://github.com/autowarefoundation/autoware/issues/2796
@@ -110,7 +105,7 @@ runs:
           ${{ inputs.build-args }}
 
     - name: Build and Publish Release to GitHub Container Registry
-      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish_packages }}
+      if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
       uses: docker/bake-action@v3
       with:
         push: true
@@ -124,7 +119,7 @@ runs:
           ${{ inputs.build-args }}
     
     - name: Build and Save Artifacts
-      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish_packages != true}}
+      if: ${{ github.event_name == 'workflow_dispatch' }}
       uses: docker/bake-action@v3
       with:
         push: false
@@ -140,13 +135,35 @@ runs:
           devel.output=type=docker,dest=/tmp/devel.tar
           runtime.output=type=docker,dest=/tmp/runtime.tar
 
-    - name: Upload Artifacts
-      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish_packages != true }}
+    - name: Upload Artifacts - prebuilt
+      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
       uses: actions/upload-artifact@v4
       with:
-        name: docker-images
-        path: /tmp/*.tar
+        name: prebuilt
+        path: /tmp/prebuilt.tar
         retention-days: 7
         compression-level: 6
         overwrite: true
-        if-no-files-found: error
+        if-no-files-found: warn
+    
+    - name: Upload Artifacts - devel
+      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: devel
+        path: /tmp/devel.tar
+        retention-days: 7
+        compression-level: 6
+        overwrite: true
+        if-no-files-found: warn
+    
+    - name: Upload Artifacts - runtime
+      if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: runtime
+        path: /tmp/runtime.tar
+        retention-days: 7
+        compression-level: 6
+        overwrite: true
+        if-no-files-found: warn
