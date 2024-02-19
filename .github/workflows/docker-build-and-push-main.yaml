@@ -8,7 +8,7 @@ name: docker-build-and-push-main
 on:
   push:
     tags:
-      - 'adkit-v*.*.*'
+      - "adkit-v*.*.*"
     branches:
       - main
   schedule:
@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       save-artifacts:
-        description: 'Save artifacts to Github Actions'
+        description: "Save artifacts to Github Actions"
         required: true
         default: true
         type: boolean

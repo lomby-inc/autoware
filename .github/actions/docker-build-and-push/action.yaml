@@ -116,7 +116,7 @@ runs:
         provenance: false
         set: |
           ${{ inputs.build-args }}
-    
+
     - name: Build and Save Artifacts
       if: ${{ github.event_name == 'workflow_dispatch' }}
       uses: docker/bake-action@v3
