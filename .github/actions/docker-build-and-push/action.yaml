@@ -144,7 +144,7 @@ runs:
         compression-level: 6
         overwrite: true
         if-no-files-found: error
-    
+
     - name: Upload Artifact - devel
       if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
       uses: actions/upload-artifact@v4
@@ -155,7 +155,7 @@ runs:
         compression-level: 6
         overwrite: true
         if-no-files-found: error
-    
+
     - name: Upload Artifact - runtime
       if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
       uses: actions/upload-artifact@v4
