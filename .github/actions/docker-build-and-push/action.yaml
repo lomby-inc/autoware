@@ -88,6 +88,7 @@ runs:
         password: ${{ github.token }}
 
     - name: Build and Push - prebuilt and devel
+      run: echo "DEVELOPMENT BUILD.."
       if: ${{ (github.event_name == 'push' && github.ref_type == 'branch') || github.event_name == 'schedule' }}
       uses: docker/bake-action@v3
       with:
@@ -104,6 +105,7 @@ runs:
           ${{ inputs.build-args }}
 
     - name: Build and Publish Release to GitHub Container Registry
+      run: echo "RELEASE BUILD.."
       if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
       uses: docker/bake-action@v3
       with:
@@ -118,6 +120,7 @@ runs:
           ${{ inputs.build-args }}
 
     - name: Build and Save Artifacts
+      run: echo "WORKFLOW DISPATCH BUILD.."
       if: ${{ github.event_name == 'workflow_dispatch' }}
       uses: docker/bake-action@v3
       with:
@@ -135,6 +138,7 @@ runs:
           runtime.output=type=docker,dest=/tmp/runtime.tar
 
     - name: Upload Artifact - prebuilt
+      run: echo "UPLOADING ARTIFACT -> prebuilt-image"
       if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
       uses: actions/upload-artifact@v4
       with:
@@ -146,6 +150,7 @@ runs:
         if-no-files-found: error
 
     - name: Upload Artifact - devel
+      run: echo "UPLOADING ARTIFACT -> devel-image"
       if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
       uses: actions/upload-artifact@v4
       with:
@@ -157,6 +162,7 @@ runs:
         if-no-files-found: error
 
     - name: Upload Artifact - runtime
+      run: echo "UPLOADING ARTIFACT -> runtime-image"
       if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
       uses: actions/upload-artifact@v4
       with:
