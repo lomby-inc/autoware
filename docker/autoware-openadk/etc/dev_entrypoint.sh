@@ -1,5 +1,5 @@
 #!/bin/bash
-# hadolint global ignore=SC1090,SC1091
+# shellcheck disable=SC1090,SC1091
 
 # Get the user ID and group ID of the local user
 USER_ID=${LOCAL_UID}
