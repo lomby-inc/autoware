@@ -91,7 +91,6 @@ runs:
       if: ${{ (github.event_name == 'push' && github.ref_type == 'branch') || github.event_name == 'schedule' }}
       uses: docker/bake-action@v3
       with:
-        # Checking event_name for https://github.com/autowarefoundation/autoware/issues/2796
         push: true
         files: |
           docker/${{ inputs.bake-target }}/docker-bake.hcl
@@ -135,35 +134,35 @@ runs:
           devel.output=type=docker,dest=/tmp/devel.tar
           runtime.output=type=docker,dest=/tmp/runtime.tar
 
-    - name: Upload Artifacts - prebuilt
+    - name: Upload Artifact - prebuilt
       if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
       uses: actions/upload-artifact@v4
       with:
-        name: prebuilt
+        name: prebuilt-image
         path: /tmp/prebuilt.tar
         retention-days: 7
         compression-level: 6
         overwrite: true
-        if-no-files-found: warn
+        if-no-files-found: error
     
-    - name: Upload Artifacts - devel
+    - name: Upload Artifact - devel
       if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
       uses: actions/upload-artifact@v4
       with:
-        name: devel
+        name: devel-image
         path: /tmp/devel.tar
         retention-days: 7
         compression-level: 6
         overwrite: true
-        if-no-files-found: warn
+        if-no-files-found: error
     
-    - name: Upload Artifacts - runtime
+    - name: Upload Artifact - runtime
       if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.save-artifacts == true }}
       uses: actions/upload-artifact@v4
       with:
-        name: runtime
+        name: runtime-image
         path: /tmp/runtime.tar
         retention-days: 7
         compression-level: 6
         overwrite: true
-        if-no-files-found: warn
+        if-no-files-found: error
