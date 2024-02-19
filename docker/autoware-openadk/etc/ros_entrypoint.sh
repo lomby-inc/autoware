@@ -1,4 +1,5 @@
 #!/bin/bash
+# hadolint global ignore=SC1090,SC1091
 set -e
 
 # hadolint ignore=SC1090

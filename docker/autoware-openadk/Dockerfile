@@ -1,3 +1,4 @@
+# hadolint global ignore=DL3006,DL3008,DL3009,DL3015,DL3013,DL3027,DL3042
 ARG BASE_IMAGE
 
 FROM $BASE_IMAGE as base
@@ -90,7 +91,7 @@ RUN --mount=type=ssh \
 
 # Instal gosu for switching to local user in entrypoint
 RUN --mount=type=ssh \
-  apt-get update && apt-get install -y gosu \
+  apt-get update && apt-get install --no-install-recommends -y gosu \
   && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* "$HOME"/.cache
 
 # Change working directory to workspace

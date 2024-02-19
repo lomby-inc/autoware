@@ -137,9 +137,9 @@ main() {
     echo "docker run -it --rm --net=host ${GPU_FLAG} ${USER_ID} ${MOUNT_X} ${WORKSPACE} ${MAP} ${IMAGE} ${LAUNCH_CMD}"
     echo "------------------------------------"
     sleep 2
-    docker run -it --rm --net=host ${GPU_FLAG} ${USER_ID} ${MOUNT_X} \
-        ${WORKSPACE} ${MAP} ${IMAGE} \
-        ${LAUNCH_CMD}
+    docker run -it --rm --net=host "${GPU_FLAG}" "${USER_ID}" "${MOUNT_X}" \
+        "${WORKSPACE}" "${MAP}" "${IMAGE}" \
+        "${LAUNCH_CMD}"
 }
 
 # Execute the main script
