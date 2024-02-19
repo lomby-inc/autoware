@@ -1,3 +1,4 @@
+# EVENTS: push, schedule, workflow_dispatch
 # workflow_dispatch: Build all. No publish to registry; save as tarball.
 # schedule: Build only devel and prebuilt. TAGS: date, latest
 # push-branch: Build only devel and prebuilt. TAGS: date, latest
