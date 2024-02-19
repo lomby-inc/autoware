@@ -76,7 +76,7 @@ parse_arguments() {
 # Set image and workspace variables based on options
 set_variables() {
     if [ "$option_devel" == "true" ]; then
-        IMAGE="ghcr.io/autowarefoundation/autoware-openadk:devel-$rosdistro-latest"
+        IMAGE="ghcr.io/autowarefoundation/autoware-openadk:latest-devel"
         USER_ID="-e LOCAL_UID=$(id -u) -e LOCAL_GID=$(id -g) -e LOCAL_USER=$(id -un) -e LOCAL_GROUP=$(id -gn)"
         WORKSPACE="-v ${WORKSPACE_PATH}:/workspace"
         LAUNCH_CMD=""
@@ -94,7 +94,7 @@ set_variables() {
         fi
 
         MAP="-v ${MAP_PATH}:/${MAP_PATH}"
-        IMAGE="ghcr.io/autowarefoundation/autoware-openadk:runtime-$rosdistro-latest"
+        IMAGE="ghcr.io/autowarefoundation/autoware-openadk:latest-runtime"
         WORKSPACE=""
 
         # Echo
@@ -107,11 +107,11 @@ set_variables() {
 
 # Set GPU flag based on option
 set_gpu_flag() {
-    if [ "$option_no_nvidia" = "false" ]; then
-        IMAGE=${IMAGE}-cuda
-        GPU_FLAG="--gpus all"
-    else
+    if [ "$option_no_nvidia" = "true" ]; then
+        IMAGE=${IMAGE}-nocuda
         GPU_FLAG=""
+    else
+        GPU_FLAG="--gpus all"
     fi
 }
 
