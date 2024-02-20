@@ -99,3 +99,64 @@ repositories:
     type: git
     url: https://github.com/autowarefoundation/autoware_individual_params.git
     version: bfc7e159cb040f2abcf39954ede326ecebd86749
+  # lomby
+  lomby_autoware/core/lomby_autonomous_navigation_msgs:
+    type: git
+    url: git@github.com:lomby-inc/lomby_autonomous_navigation_msgs.git
+    version: main
+  lomby_autoware/core/ros2_qos_tools:
+    type: git
+    url: git@github.com:lomby-inc/ros2_qos_tools.git
+    version: main
+  lomby_autoware/universe/lomby.universe:
+    type: git
+    url: git@github.com:lomby-inc/lomby_universe.git
+    version: main
+  lomby_autoware/universe/external/vision:
+    type: git
+    url: git@github.com:lomby-inc/lomby_vision.git
+    version: main
+  lomby_autoware/universe/external/ntrip_client:
+    type: git
+    url: https://github.com/LORD-MicroStrain/ntrip_client.git
+    version: ros2
+  lomby_autoware/universe/external/serial-ros2:
+    type: git
+    url: https://github.com/RoverRobotics-forks/serial-ros2.git
+    version: master
+  lomby_autoware/launcher/autoware_launch_lomby:
+    type: git
+    url: git@github.com:lomby-inc/autoware_launch.git
+    version: release/2024.01/lomby
+  lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
+    type: git
+    url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
+    version: main
+  lomby_autoware/vehicle/lomby_robot_properties:
+    type: git
+    url: git@github.com:lomby-inc/lomby_robot_properties.git
+    version: main
+  lomby_autoware/vehicle/lomby_vehicle_launch:
+    type: git
+    url: git@github.com:lomby-inc/lomby_vehicle_launch.git
+    version: main
+  lomby_autoware/sensor_component/ublox:
+    type: git
+    url: git@github.com:lomby-inc/lomby_ublox.git
+    version: ros2
+  lomby_autoware/sensor_component/hesai:
+    type: git
+    url: https://github.com/MapIV/hesai_pandar.git
+    version: ros2
+  lomby_autoware/sensor_component/slamtec:
+    type: git
+    url: git@github.com:lomby-inc/sllidar_ros2.git
+    version: main
+  lomby_autoware/sensor_component/hokuyo:
+    type: git
+    url: https://github.com/Hokuyo-aut/urg_node2.git
+    version: main
+  lomby_autoware/sensor_component/hayate_imu:
+    type: git
+    url: git@github.com:lomby-inc/lomby_haya_imu_driver.git
+    version: main
