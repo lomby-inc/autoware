@@ -71,10 +71,10 @@ repositories:
     type: git
     url: https://github.com/tier4/tamagawa_imu_driver.git
     version: de4bf6be79aa2968cf2f62e0ebe1ff8a5797e6ad
-  sensor_component/external/nebula:
-    type: git
-    url: https://github.com/tier4/nebula.git
-    version: 73a1e1b9daacab4dc16774f63420e0e9be630bc6
+  # sensor_component/external/nebula:
+    # type: git
+    # url: https://github.com/tier4/nebula.git
+    # version: 73a1e1b9daacab4dc16774f63420e0e9be630bc6
   sensor_component/external/transport_drivers:
     type: git
     url: https://github.com/MapIV/transport_drivers.git
