@@ -131,12 +131,12 @@ To prevent this error occurring when rocker is not used, there are two suggested
    {
      "name": "Autoware",
      "build": {
-       "dockerfile": "Dockerfile"
+       "dockerfile": "Dockerfile",
      },
      "remoteUser": "autoware",
      "settings": {
-       "terminal.integrated.defaultProfile.linux": "bash"
-     }
+       "terminal.integrated.defaultProfile.linux": "bash",
+     },
    }
    ```
 
