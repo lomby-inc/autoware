@@ -124,6 +124,10 @@ repositories:
     type: git
     url: https://github.com/RoverRobotics-forks/serial-ros2.git
     version: master
+  lomby_autoware/universe/external/lomby_haya_imu_converter
+    type: git
+    url: git@github.com:lomby-inc/lomby_haya_imu_converter.git
+    version: main
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
