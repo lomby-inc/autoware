@@ -100,10 +100,6 @@ repositories:
     url: https://github.com/autowarefoundation/autoware_individual_params.git
     version: bfc7e159cb040f2abcf39954ede326ecebd86749
   # lomby
-  lomby_autoware/core/lomby_autonomous_navigation_msgs:
-    type: git
-    url: git@github.com:lomby-inc/lomby_autonomous_navigation_msgs.git
-    version: main
   lomby_autoware/core/ros2_qos_tools:
     type: git
     url: git@github.com:lomby-inc/ros2_qos_tools.git
