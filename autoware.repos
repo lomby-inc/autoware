@@ -164,3 +164,7 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_haya_imu_driver.git
     version: main
+  lomby_autoware/sensor_component/rt_imu:
+    type: git
+    url: git@github.com:lomby-inc/lomby_rt_imu_driver.git
+    version: main
