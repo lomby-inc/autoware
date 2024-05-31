@@ -22,7 +22,7 @@ repositories:
   universe/autoware.universe:
     type: git
     url: git@github.com:lomby-inc/autoware.universe.git
-    version: ed8ffea6843ada32afea7f3ec8e9c7df111306f5
+    version: fix/modified_topic_obstacle_grid_map
   universe/external/tier4_ad_api_adaptor:
     type: git
     url: https://github.com/tier4/tier4_ad_api_adaptor.git
