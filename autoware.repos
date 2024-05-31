@@ -21,7 +21,7 @@ repositories:
     version: 1e8b6d234e2690c9da386f006bb60835cdccddfd
   universe/autoware.universe:
     type: git
-    url: https://github.com/autowarefoundation/autoware.universe.git
+    url: git@github.com:lomby-inc/autoware.universe.git
     version: ed8ffea6843ada32afea7f3ec8e9c7df111306f5
   universe/external/tier4_ad_api_adaptor:
     type: git
