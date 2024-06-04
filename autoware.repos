@@ -21,8 +21,8 @@ repositories:
     version: 1e8b6d234e2690c9da386f006bb60835cdccddfd
   universe/autoware.universe:
     type: git
-    url: https://github.com/autowarefoundation/autoware.universe.git
-    version: ed8ffea6843ada32afea7f3ec8e9c7df111306f5
+    url: git@github.com:lomby-inc/autoware.universe.git
+    version: 7076b64ce04bbaff74552aab8cac3cdbe5949e38
   universe/external/tier4_ad_api_adaptor:
     type: git
     url: https://github.com/tier4/tier4_ad_api_adaptor.git
@@ -111,11 +111,11 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: 04dcd01156936987425026e8985e4fcd31837c03
+    version: d9a9357ec2ce89e04e42bd8eacbc55c96b1ed6ce
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
-    version: 2bd915ee37b565407dcc6ec7d1889310744c1b57
+    version: 60d6dcff1f6f6ccc407d890200386b38fd715d49
   lomby_autoware/universe/external/ntrip_client:
     type: git
     url: https://github.com/LORD-MicroStrain/ntrip_client.git
@@ -131,11 +131,11 @@ repositories:
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: 5ccb2e19e537ab2b9e01559c8b07cdcde68d3515
+    version: a97d262218e0a41d25219a4658cbc7f2f7b8348b
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
-    version: 1699d797c99c91b5f1a11da41d2222dc7c7cf0e1
+    version: 3ef21a68c55eba4cca20cb7596083dbdb54e843a
   lomby_autoware/vehicle/lomby_robot_properties:
     type: git
     url: git@github.com:lomby-inc/lomby_robot_properties.git
@@ -143,7 +143,7 @@ repositories:
   lomby_autoware/vehicle/lomby_vehicle_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_vehicle_launch.git
-    version: 469b42a21cd338cef152a5da685689d7d04978d6
+    version: c4330be80aa6f45dbc3e23d13bc23662e6a3f88c
   lomby_autoware/sensor_component/ublox:
     type: git
     url: git@github.com:lomby-inc/lomby_ublox.git
