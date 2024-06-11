@@ -143,7 +143,7 @@ repositories:
   lomby_autoware/vehicle/lomby_vehicle_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_vehicle_launch.git
-    version: 2b8daaaa25d918fa33f7a336626c43bf8862edf4
+    version: 59e369cf912e55db48917560611eb80a30ddf3ac
   lomby_autoware/sensor_component/ublox:
     type: git
     url: git@github.com:lomby-inc/lomby_ublox.git
