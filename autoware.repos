@@ -115,7 +115,7 @@ repositories:
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
-    version: 60d6dcff1f6f6ccc407d890200386b38fd715d49
+    version: 503d916a653289ca3e570829d207f7c8752ddc7c
   lomby_autoware/universe/external/ntrip_client:
     type: git
     url: https://github.com/LORD-MicroStrain/ntrip_client.git
@@ -135,7 +135,7 @@ repositories:
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
-    version: 3e3428de4bbb008e5ef81584438d5dd8028aa639
+    version: 5488cadfd0f54126e2428f52ad4d55d7e72e01f4
   lomby_autoware/vehicle/lomby_robot_properties:
     type: git
     url: git@github.com:lomby-inc/lomby_robot_properties.git
