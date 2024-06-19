@@ -111,7 +111,7 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: 976acc441fd1eba0de6cbdf251a1e00bc80c3eb8
+    version: a7fc52aff36ddc41eafaabf5f8763089943cce84
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
