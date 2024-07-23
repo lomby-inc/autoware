@@ -2,7 +2,7 @@ name: build-main-ci
 on:
   push:
     branches:
-      - feature/enable-autoware-ci
+      - release/2024.01
   pull_request:
     branches:
       - release/2024.01
