@@ -1,0 +1,78 @@
+name: build-main-ci
+on:
+  push:
+    branches:
+      - release/2024.01
+  pull_request:
+    branches:
+      - release/2024.01
+jobs:
+  aws-login:
+    runs-on: self-hosted
+    outputs:
+      password: ${{ steps.get_password.outputs.password }}
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+      - id: get_password
+        run: echo "password=$(aws ecr get-login-password)" >> $GITHUB_OUTPUT
+
+  build:
+    needs: aws-login
+    runs-on: self-hosted
+    container:
+      image: 103382653610.dkr.ecr.ap-northeast-1.amazonaws.com/autoware-dev:v2.0
+      credentials:
+        username: AWS
+        password: ${{ needs.aws-login.outputs.password }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set git config
+        uses: autowarefoundation/autoware-github-actions/set-git-config@v1
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+
+      - name: Run vcs import
+        run: |
+          mkdir src
+          vcs import src < autoware.repos
+
+      - name: Run vcs export
+        run: |
+          vcs export --exact src || true
+
+      - name: Init and Update Git Submodules
+        run: |
+          vcs custom src --debug --git --args submodule update --init --recursive
+
+      - name: Run rosdep install
+        run: |
+          sudo apt-get -y update
+          rosdep update
+          DEBIAN_FRONTEND=noninteractive rosdep install -y --from-paths src --ignore-src --rosdistro humble
+
+      - name: Install additional dependencies
+        run: |
+          apt-get update
+          apt-get install -y libpcap-dev \
+            libboost-all-dev \
+            libeigen3-dev \
+            libgeographic-dev \
+            libpcl-dev \
+            libqt5core5a \
+            libqt5gui5 \
+            libqt5widgets5 \
+            qtbase5-dev
+
+      - name: Colcon Build
+        run: |
+          . /opt/ros/humble/setup.sh
+          colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+        continue-on-error: true

@@ -79,14 +79,14 @@ repositories:
     type: git
     url: https://github.com/MapIV/transport_drivers.git
     version: 5b007e205b60ff3e3f340804dabaccea69f6a917
-  sensor_kit/sample_sensor_kit_launch:
-    type: git
-    url: https://github.com/autowarefoundation/sample_sensor_kit_launch.git
-    version: 5ccd754fde6a39d8ddb3a8ee2f0f0e8be540f6a5
-  sensor_kit/external/awsim_sensor_kit_launch:
-    type: git
-    url: https://github.com/RobotecAI/awsim_sensor_kit_launch.git
-    version: 89b3dd4293e8e82786f6476441cf5e14014cbe7d
+  #sensor_kit/sample_sensor_kit_launch:
+    #type: git
+    #url: https://github.com/autowarefoundation/sample_sensor_kit_launch.git
+    #version: 5ccd754fde6a39d8ddb3a8ee2f0f0e8be540f6a5
+  #sensor_kit/external/awsim_sensor_kit_launch:
+    #type: git
+    #url: https://github.com/RobotecAI/awsim_sensor_kit_launch.git
+    #version: 89b3dd4293e8e82786f6476441cf5e14014cbe7d
   vehicle/sample_vehicle_launch:
     type: git
     url: https://github.com/autowarefoundation/sample_vehicle_launch.git
@@ -111,7 +111,7 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: 6ff8e2d6a543236d26b60b7f7d2e6df77902ef71
+    version: e6a0e4a11f065969b16f5096fe2d446fa949a911
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
@@ -132,10 +132,10 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
     version: 5ccb2e19e537ab2b9e01559c8b07cdcde68d3515
-  lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
-    type: git
-    url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
-    version: 5488cadfd0f54126e2428f52ad4d55d7e72e01f4
+  #lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
+    #type: git
+    #url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
+    #version: 5488cadfd0f54126e2428f52ad4d55d7e72e01f4
   lomby_autoware/vehicle/lomby_vehicle_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_vehicle_launch.git
