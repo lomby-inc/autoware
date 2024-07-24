@@ -1,8 +1,7 @@
 name: vcs-import
 
 on:
-  pull_request:
-  workflow_dispatch:
+  workflow_dispatch
 
 jobs:
   load-env:

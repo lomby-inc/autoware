@@ -1,10 +1,7 @@
 name: mirror-main-branch
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_dispatch
 
 jobs:
   mirror-main-branch:

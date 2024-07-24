@@ -1,7 +1,7 @@
 name: setup-universe
 
 on:
-  pull_request:
+  workflow_dispatch
 
 jobs:
   load-env:

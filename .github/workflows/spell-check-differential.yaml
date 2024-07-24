@@ -1,7 +1,7 @@
 name: spell-check-differential
 
 on:
-  pull_request:
+  workflow_dispatch
 
 jobs:
   spell-check-differential:

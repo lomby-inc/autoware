@@ -1,7 +1,7 @@
 name: cancel-previous-workflows
 
 on:
-  pull_request_target:
+  workflow_dispatch
 
 jobs:
   cancel-previous-workflows:
