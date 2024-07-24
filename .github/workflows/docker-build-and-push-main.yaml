@@ -1,13 +1,7 @@
 name: docker-build-and-push-main
 
 on:
-  push:
-    tags:
-      - v*
-      - "[0-9]+.[0-9]+*"
-  schedule:
-    - cron: 0 0 1,15 * *
-  workflow_dispatch:
+  workflow_dispatch
 
 jobs:
   docker-build-and-push-main:

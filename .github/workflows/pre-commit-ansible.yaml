@@ -1,7 +1,7 @@
 name: pre-commit-ansible
 
 on:
-  pull_request:
+  workflow_dispatch
 
 jobs:
   pre-commit-ansible:

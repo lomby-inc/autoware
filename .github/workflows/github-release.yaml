@@ -1,17 +1,7 @@
 name: github-release
 
 on:
-  push:
-    branches:
-      - beta/v*
-    tags:
-      - v*
-  workflow_dispatch:
-    inputs:
-      beta-branch-or-tag-name:
-        description: The name of the beta branch or tag to release
-        type: string
-        required: true
+  workflow_dispatch
 
 jobs:
   github-release:
