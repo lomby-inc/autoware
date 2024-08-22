@@ -22,7 +22,7 @@ repositories:
   universe/autoware.universe:
     type: git
     url: git@github.com:lomby-inc/autoware.universe.git
-    version: 6047d2527e7190725ca3cf319d8df8d4b36032d0
+    version: a9d6626f9372edc7dd922b66697b5bdff4ee4eea
   universe/external/tier4_ad_api_adaptor:
     type: git
     url: https://github.com/tier4/tier4_ad_api_adaptor.git
@@ -111,11 +111,11 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: 4db420128c7ce379b10f303203a414641ce942e0
+    version: 646be160b507512046652ef2222f8d259dfec0af
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
-    version: 6df60df8d539f935e20e0b1879e1f5030f841093
+    version: f28539176b56c432f08e95198063f04ff2a8faf0
   lomby_autoware/universe/external/ntrip_client:
     type: git
     url: https://github.com/LORD-MicroStrain/ntrip_client.git
@@ -131,7 +131,7 @@ repositories:
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: a4bfdfd42968b8581c1cc9e32c69e77b9bb1339d
+    version: fd63809d05e206dbd4f5102bb8b50617d1c5b5a0
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
@@ -148,6 +148,10 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_ublox.git
     version: 63d355cb71d284dae391d94d59dfee343eac0f74
+  lomby_autoware/sensor_component/sick:
+    type: git
+    url: https://github.com/SICKAG/sick_scan_xd.git
+    version: 6bdc5a38edcefebc0fc4c42583c67cf52ccb7d79
   lomby_autoware/sensor_component/hesai:
     type: git
     url: https://github.com/MapIV/hesai_pandar.git
