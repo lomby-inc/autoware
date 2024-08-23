@@ -128,6 +128,10 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_haya_imu_converter.git
     version: d3f4d1dddaa5df4decddaba8428adb29fce9aa67
+  lomby_autoware/universe/external/lomby_zero_mq_converter:
+    type: git
+    url: git@github.com:lomby-inc/lomby_zero_mq_converter.git
+    version: f2ba11cfd8e9e9125c09a7ac8a44dfafe09996fa
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
