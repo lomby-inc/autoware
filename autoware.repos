@@ -111,11 +111,11 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: a516609cb53ccada6a8aaa905f5ebe5604df0492
+    version: f176cb8845f52d5fd50fcf6d5b761b61042e9b26
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
-    version: 442f1eae108314886c90435e44dbf33a04add695
+    version: 3ec5f34c18a6841a31c41aa48fb69466e022a299
   lomby_autoware/universe/external/ntrip_client:
     type: git
     url: https://github.com/LORD-MicroStrain/ntrip_client.git
@@ -131,7 +131,7 @@ repositories:
   lomby_autoware/universe/external/lomby_zero_mq_converter:
     type: git
     url: git@github.com:lomby-inc/lomby_zero_mq_converter.git
-    version: 3bc31a22f50594ba21089807d163b6ae002bedb6
+    version: 96484065616009cf7d857b7ced6fc48d463b4dbb
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
