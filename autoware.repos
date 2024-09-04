@@ -111,7 +111,7 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: 7b7a4ea9b283afbd8079924893956517453961a4
+    version: bfedb3206ba89c54c270db9ecf25e94b7cbe5349
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
@@ -131,7 +131,7 @@ repositories:
   lomby_autoware/universe/external/lomby_zero_mq_converter:
     type: git
     url: git@github.com:lomby-inc/lomby_zero_mq_converter.git
-    version: a6e75371bfd852de7416535d2dc4bb6fc6c739e9
+    version: 9bdcd6c66aca687f14b108151681851314827afa
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
