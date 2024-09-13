@@ -131,7 +131,7 @@ repositories:
   lomby_autoware/universe/external/lomby_zero_mq_converter:
     type: git
     url: git@github.com:lomby-inc/lomby_zero_mq_converter.git
-    version: 9bdcd6c66aca687f14b108151681851314827afa
+    version: cc228e37aea43182a881dc0c52aaec8069afe539
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
