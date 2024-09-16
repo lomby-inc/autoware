@@ -27,11 +27,11 @@ repositories:
     type: git
     url: https://github.com/tier4/tier4_ad_api_adaptor.git
     version: 2f341cc1f785b14043f16ecbe1dd83a6bf5dd443
-  universe/external/tier4_autoware_msgs:
+  /external/tier4_autoware_msgs:
     type: git
     url: https://github.com/tier4/tier4_autoware_msgs.git
     version: 29d1db4a3f887daf5b73b26a304522db13b651f5
-  universe/external/morai_msgs:
+  /external/morai_msgs:
     type: git
     url: https://github.com/MORAI-Autonomous/MORAI-ROS2_morai_msgs.git
     version: 860aaadea5dcaabd5a2272c244eea51265363740
@@ -111,7 +111,7 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: c91a265e6e0e018a077e630b2c6d81b69d2ec288
+    version: 05fac847baa4c867b93aea060d79b8c8ffe41c68
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
