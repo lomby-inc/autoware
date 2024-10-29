@@ -155,7 +155,7 @@ repositories:
   lomby_autoware/sensor_component/sick:
     type: git
     url: git@github.com:lomby-inc/lomby_sick_scan_xd.git
-    version: 0a55286b4ad45476713d98613600daee4fd3b5ca
+    version: 755a29dcbc51bd745b82d58a3e1a04a9eb01a91c
   lomby_autoware/sensor_component/hesai:
     type: git
     url: https://github.com/MapIV/hesai_pandar.git
