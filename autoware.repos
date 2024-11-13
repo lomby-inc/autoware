@@ -160,6 +160,10 @@ repositories:
     type: git
     url: https://github.com/MapIV/hesai_pandar.git
     version: ros2
+  lomby_autoware/sensor_component/hesai_official:
+    type: git
+    url: https://github.com/HesaiTechnology/HesaiLidar_ROS_2.0.git
+    version: master
   lomby_autoware/sensor_component/slamtec:
     type: git
     url: git@github.com:lomby-inc/sllidar_ros2.git
