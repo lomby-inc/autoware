@@ -31,13 +31,9 @@ repositories:
     type: git
     url: https://github.com/autowarefoundation/autoware.core.git
     version: d02c63cc555046f6a3d1feb44fdb94c780c3753c
-  core/external/autoware_auto_msgs:
-    type: git
-    url: https://github.com/tier4/autoware_auto_msgs.git
-    version: 1e8b6d234e2690c9da386f006bb60835cdccddfd
   universe/autoware.universe:
     type: git
-    url: git@github.com:lomby-inc/autoware.universe.git
+    url: https://github.com/autowarefoundation/autoware.universe.git
     version: 89d0a516502b980368cadd2739260e766dd2e129
   universe/external/tier4_ad_api_adaptor:
     type: git
@@ -99,9 +95,9 @@ repositories:
     # type: git
     # url: https://github.com/tier4/nebula.git
     # version: 18af521fc3a3ab1ce9c17ec94c2a0a8633317de4
-  sensor_component/external/transport_drivers:
+  sensor_component/transport_drivers:
     type: git
-    url: https://github.com/MapIV/transport_drivers.git
+    url: https://github.com/autowarefoundation/transport_drivers
     version: 3a08555776df12eadd0e91867d338c4270932a44
   sensor_component/ros2_socketcan:
     type: git
