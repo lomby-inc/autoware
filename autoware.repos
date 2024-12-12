@@ -86,7 +86,7 @@ repositories:
   sensor_component/external/sensor_component_description:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_component_description.git
-    version: 079820003a1c969df7fa02ca092e532c66ab809e
+    version: 8c3d13dd1b4233a50bde457dab1121922c4c8bd8
   sensor_component/external/tamagawa_imu_driver:
     type: git
     url: https://github.com/tier4/tamagawa_imu_driver.git
