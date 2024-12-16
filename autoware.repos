@@ -31,6 +31,10 @@ repositories:
     type: git
     url: https://github.com/autowarefoundation/autoware.core.git
     version: d02c63cc555046f6a3d1feb44fdb94c780c3753c
+  core/external/autoware_auto_msgs:
+    type: git
+    url: https://github.com/tier4/autoware_auto_msgs.git
+    version: 1e8b6d234e2690c9da386f006bb60835cdccddfd
   universe/autoware.universe:
     type: git
     url: https://github.com/autowarefoundation/autoware.universe.git
@@ -151,7 +155,7 @@ repositories:
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
-    version: main
+    version: e73b0d4a296754051d01951bc8cecae86e1a52be
   lomby_autoware/universe/external/ntrip_client:
     type: git
     url: https://github.com/LORD-MicroStrain/ntrip_client.git
@@ -171,7 +175,7 @@ repositories:
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: b4add768181e8d9fc44e2630a1cac3c1d0011ab8
+    version: d2d8363759770212fbcd43e277319a04adbcd366
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
