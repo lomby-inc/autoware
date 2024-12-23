@@ -155,7 +155,7 @@ repositories:
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
-    version: e73b0d4a296754051d01951bc8cecae86e1a52be
+    version: afa96cb75402455d778132c22ad58a643e92287e
   lomby_autoware/universe/external/ntrip_client:
     type: git
     url: https://github.com/LORD-MicroStrain/ntrip_client.git
