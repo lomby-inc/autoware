@@ -167,7 +167,7 @@ repositories:
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: 39348cfa9563670990a6e5fd242ef4cc55d1580b
+    version: 9ce8d880d64fbf8e46bcace69fd0d6851ae338e0
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
@@ -179,7 +179,7 @@ repositories:
   lomby_autoware/vehicle/lomby_vehicle_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_vehicle_launch.git
-    version: c291fd5e032f524f951308e302bd742a221aff5d
+    version: stable/LM2.0
   lomby_autoware/sensor_component/ublox:
     type: git
     url: git@github.com:lomby-inc/lomby_ublox.git
@@ -195,7 +195,7 @@ repositories:
   lomby_autoware/sensor_component/hesai_official:
     type: git
     url: git@github.com:lomby-inc/HesaiLidar_ROS_2.0.git
-    version: 4196cf5fade08f8ad3444d6f4c51cb5abfae2d86
+    version: 4171deb18cf8c1c4f2550bdfad4f9f464663477d
   lomby_autoware/sensor_component/slamtec:
     type: git
     url: git@github.com:lomby-inc/sllidar_ros2.git
