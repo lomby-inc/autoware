@@ -1,4 +1,4 @@
-name: Upload to S3 with Versioning
+name: Upload to S3 and Deploy to Greengrass
 
 on:
   push:
@@ -8,10 +8,14 @@ on:
       - 'autoware.repos'
 
 jobs:
-  upload:
+  upload-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Verify AWS Credentials
+        run: |
+          aws sts get-caller-identity
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -26,4 +30,15 @@ jobs:
           aws s3 cp autoware.repos s3://lomby-greengrass/autoware-repos-updates/latest/autoware.repos
           aws s3 cp autoware.repos s3://lomby-greengrass/autoware-repos-updates/archive/$TIMESTAMP-autoware.repos
 
+      - name: Create Greengrass Deployment
+        run: |
+          aws greengrassv2 create-deployment \
+            --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thinggroup/${{ secrets.THING_GROUP_NAME }} \
+            --deployment-name "AutowareReposUpdate-$(date +%Y-%m-%d-%H-%M-%S)" \
+            --components '{"AutowareReposUpdater": {"componentVersion": "1.0.0"}}' \
+            --region ap-northeast-1
 
+      - name: Check Deployment Status
+        run: |
+          DEPLOYMENT_ID=$(aws greengrassv2 list-deployments --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thinggroup/${{ secrets.THING_GROUP_NAME }} --query 'deployments[0].deploymentId' --output text)
+          aws greengrassv2 get-deployment --deployment-id $DEPLOYMENT_ID
