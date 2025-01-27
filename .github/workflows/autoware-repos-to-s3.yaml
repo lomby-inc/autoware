@@ -29,7 +29,7 @@ jobs:
       - name: Create Greengrass Deployment
         run: |
           aws greengrassv2 create-deployment \
-            --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thinggroup/${{ secrets.THING_GROUP_NAME }} \
+            --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thinggroup/lomby-lma2-things \
             --deployment-name "AutowareReposUpdate-$(date +%Y-%m-%d-%H-%M-%S)" \
             --components '{"AutowareReposUpdater": {"componentVersion": "1.0.0"}}' \
             --region ap-northeast-1
