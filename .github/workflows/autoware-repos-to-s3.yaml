@@ -36,5 +36,5 @@ jobs:
 
       - name: Check Deployment Status
         run: |
-          DEPLOYMENT_ID=$(aws greengrassv2 list-deployments --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thinggroup/${{ secrets.THING_GROUP_NAME }} --query 'deployments[0].deploymentId' --output text)
+          DEPLOYMENT_ID=$(aws greengrassv2 list-deployments --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thinggroup/lomby-lma2-things --query 'deployments[0].deploymentId' --output text)
           aws greengrassv2 get-deployment --deployment-id $DEPLOYMENT_ID
