@@ -28,14 +28,28 @@ jobs:
           aws s3 cp autoware.repos s3://lomby-greengrass/autoware-repos-updates/archive/$TIMESTAMP-autoware.repos
 
       - name: Create Greengrass Deployment
+        id: create_deployment
         run: |
+          DEPLOYMENT_NAME="AutowareReposUpdate-$(date +%Y-%m-%d-%H-%M-%S)"
           aws greengrassv2 create-deployment \
             --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thinggroup/lomby-lma2-things \
-            --deployment-name "AutowareReposUpdate-$(date +%Y-%m-%d-%H-%M-%S)" \
+            --deployment-name "$DEPLOYMENT_NAME" \
             --components '{"AutowareReposUpdater": {"componentVersion": "1.0.0"}}' \
             --region ap-northeast-1
 
       - name: Check Deployment Status
+        id: check_status
         run: |
           DEPLOYMENT_ID=$(aws greengrassv2 list-deployments --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thinggroup/lomby-lma2-things --query 'deployments[0].deploymentId' --output text)
-          aws greengrassv2 get-deployment --deployment-id $DEPLOYMENT_ID
+          STATUS=$(aws greengrassv2 get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentStatus' --output text)
+          echo "Deployment Status: $STATUS"
+          echo "::set-output name=status::$STATUS"
+
+      - name: Notify User of Deployment Status
+        run: |
+          if [ "${{ steps.check_status.outputs.status }}" == "SUCCESS" ]; then
+            echo "Deployment was successful!"
+          else
+            echo "Deployment failed with status: ${{ steps.check_status.outputs.status }}."
+            exit 1
+          fi
