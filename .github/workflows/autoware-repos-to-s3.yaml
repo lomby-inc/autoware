@@ -35,26 +35,16 @@ jobs:
         id: create_deployment
         run: |
           DEPLOYMENT_NAME="AutowareReposUpdate-$(date +%Y-%m-%d-%H-%M-%S)"
-          # Deployment to thing group (commented out)
-          # aws greengrassv2 create-deployment \
-          #   --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thinggroup/lomby-lma2-things \
-          #   --deployment-name "$DEPLOYMENT_NAME" \
-          #   --components '{"AutowareReposUpdater": {"componentVersion": "1.0.0"}}' \
-          #   --region ap-northeast-1
-
           # Deployment to specific core device
           aws greengrassv2 create-deployment \
             --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thing/lma2-unit-6 \
             --deployment-name "$DEPLOYMENT_NAME" \
-            --components '{"AutowareReposUpdater": {"componentVersion": "1.0.0"}}' \
+            --components '{"AutowareReposUpdater": {"componentVersion": "1.0.1"}}' \
             --region ap-northeast-1
 
       - name: Check Deployment Status
         id: check_status
         run: |
-          # For thing group deployment (commented out)
-          # DEPLOYMENT_ID=$(aws greengrassv2 list-deployments --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thinggroup/lomby-lma2-things --query 'deployments[0].deploymentId' --output text)
-
           # For specific core device deployment
           DEPLOYMENT_ID=$(aws greengrassv2 list-deployments --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thing/lma2-unit-6 --query 'deployments[0].deploymentId' --output text)
           
@@ -84,7 +74,7 @@ jobs:
       - name: Notify User of Deployment Status
         run: |
           if [ "${{ steps.check_status.outputs.status }}" == "SUCCESS" ]; then
-            echo "Deployment was successful!"
+            echo "Deployment was successful! Colcon build should be running on the device."
           elif [ "${{ steps.check_status.outputs.status }}" == "TIMEOUT" ]; then
             echo "Deployment timed out after checking for 10 minutes."
             exit 1
