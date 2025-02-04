@@ -1,10 +1,5 @@
 name: Upload to S3 and Deploy to Greengrass
 
-# on: workflow_dispatch
-#   # uncomment below to enable the workflow
-#   # push:
-#   #   branches:
-#   #     - release/lomby/2024.10/2024.12
 on:
   push:
     branches:
@@ -25,7 +20,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1
 
-      - name: Upload new 'autoware.repos' file to 'latest' and 'archive'
+      - name: Upload new 'autoware.repos' file
         run: |
           TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
           aws s3 cp autoware.repos s3://lomby-greengrass/autoware-repos-updates/latest/autoware.repos
@@ -34,33 +29,35 @@ jobs:
       - name: Create Greengrass Deployment
         id: create_deployment
         run: |
-          DEPLOYMENT_NAME="AutowareReposUpdate-$(date +%Y-%m-%d-%H-%M-%S)"
-          # Deployment to specific core device
-          aws greengrassv2 create-deployment \
+          DEPLOYMENT_ID=$(aws greengrassv2 create-deployment \
             --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thing/lma2-unit-6 \
-            --deployment-name "$DEPLOYMENT_NAME" \
-            --components '{"AutowareReposUpdater": {"componentVersion": "1.0.1"}}' \
-            --region ap-northeast-1
+            --deployment-name "AutowareReposUpdate-$(date +%Y-%m-%d-%H-%M-%S)" \
+            --components '{"AutowareReposUpdater": {"componentVersion": "1.0.0", "configuration": {"DeploymentID": "$DEPLOYMENT_ID"}}}' \
+            --region ap-northeast-1 \
+            --query 'deploymentId' \
+            --output text)
+          echo "DEPLOYMENT_ID=$DEPLOYMENT_ID" >> $GITHUB_ENV
+          echo "::set-output name=deployment_id::$DEPLOYMENT_ID"
 
       - name: Check Deployment Status
         id: check_status
         run: |
-          # For specific core device deployment
-          DEPLOYMENT_ID=$(aws greengrassv2 list-deployments --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thing/lma2-unit-6 --query 'deployments[0].deploymentId' --output text)
-          
           MAX_ATTEMPTS=30
           ATTEMPT=0
-          
           while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
-            STATUS=$(aws greengrassv2 get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentStatus' --output text)
-            echo "Attempt $((ATTEMPT+1))/$MAX_ATTEMPTS: Deployment Status: $STATUS"
+            STATUS=$(aws greengrassv2 get-deployment \
+              --deployment-id ${{ env.DEPLOYMENT_ID }} \
+              --query 'deploymentStatus' \
+              --output text)
             
-            if [ "$STATUS" == "COMPLETED" ]; then
+            echo "Attempt $((ATTEMPT+1))/$MAX_ATTEMPTS: Status: $STATUS"
+            
+            if [ "$STATUS" = "COMPLETED" ]; then
               echo "::set-output name=status::SUCCESS"
               break
-            elif [ "$STATUS" == "FAILED" ]; then
+            elif [ "$STATUS" = "FAILED" ]; then
               echo "::set-output name=status::FAILED"
-              break
+              exit 1
             fi
             
             ATTEMPT=$((ATTEMPT+1))
@@ -69,16 +66,48 @@ jobs:
           
           if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
             echo "::set-output name=status::TIMEOUT"
+            exit 1
           fi
 
-      - name: Notify User of Deployment Status
+      - name: Monitor Colcon Build
+        id: monitor_build
         run: |
-          if [ "${{ steps.check_status.outputs.status }}" == "SUCCESS" ]; then
-            echo "Deployment was successful! Colcon build should be running on the device."
-          elif [ "${{ steps.check_status.outputs.status }}" == "TIMEOUT" ]; then
-            echo "Deployment timed out after checking for 10 minutes."
-            exit 1
-          else
-            echo "Deployment failed with status: ${{ steps.check_status.outputs.status }}."
-            exit 1
+          MAX_ATTEMPTS=60
+          ATTEMPT=0
+          STATUS_FILE="autoware-repos-updates/build-status/${{ env.DEPLOYMENT_ID }}-status.txt"
+          
+          while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+            aws s3 ls s3://lomby-greengrass/$STATUS_FILE && {
+              aws s3 cp s3://lomby-greengrass/$STATUS_FILE build_status.txt
+              STATUS=$(cat build_status.txt)
+              echo "::set-output name=build_status::$STATUS"
+              break
+            }
+            ATTEMPT=$((ATTEMPT+1))
+            sleep 20
+          done
+          
+          if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
+            echo "::set-output name=build_status::TIMEOUT"
           fi
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_COLOR: ${{ contains(steps.monitor_build.outputs.build_status, 'SUCCESS') && 'good' || 'danger' }}
+          SLACK_TITLE: "Build Status: ${{ steps.monitor_build.outputs.build_status }}"
+          SLACK_MESSAGE: |
+            *Deployment ID*: ${DEPLOYMENT_ID:0:6}...${DEPLOYMENT_ID: -6}
+            *Duration*: $((ATTEMPT * 20))s
+            *Result*: ${{ steps.monitor_build.outputs.build_status }}
+        if: always()
+
+      - name: Final Status
+        run: |
+          case "${{ steps.monitor_build.outputs.build_status }}" in
+            "SUCCESS") echo "All steps completed successfully" ;;
+            "FAILED") echo "Build failed" && exit 1 ;;
+            "TIMEOUT") echo "Build timed out" && exit 1 ;;
+            *) echo "Unknown status" && exit 1 ;;
+          esac
