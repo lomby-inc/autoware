@@ -32,7 +32,7 @@ jobs:
           DEPLOYMENT_ID=$(aws greengrassv2 create-deployment \
             --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thing/lma2-unit-6 \
             --deployment-name "AutowareReposUpdate-$(date +%Y-%m-%d-%H-%M-%S)" \
-            --components '{"AutowareReposUpdater": {"componentVersion": "2.0.0", "configuration": {"DeploymentID": "$DEPLOYMENT_ID"}}}' \
+            --components '{"AutowareReposUpdater": {"componentVersion": "2.0.0", "configurationUpdate": {"merge": "{\"DeploymentID\": \"$DEPLOYMENT_ID\"}"}}}' \
             --region ap-northeast-1 \
             --query 'deploymentId' \
             --output text)
