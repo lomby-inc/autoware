@@ -29,28 +29,19 @@ jobs:
       - name: Create Greengrass Deployment
         id: create_deployment
         run: |
-          DEPLOYMENT_ID=$(aws greengrassv2 create-deployment \
+          # Generate deployment ID first
+          DEPLOYMENT_ID="AutowareUpdate-$(date +%s)-$(openssl rand -hex 4)"
+          echo "DEPLOYMENT_ID=$DEPLOYMENT_ID" >> $GITHUB_ENV
+          
+          aws greengrassv2 create-deployment \
             --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thing/lma2-unit-6 \
-            --deployment-name "AutowareReposUpdate-$(date +%Y-%m-%d-%H-%M-%S)" \
-            --components '{"AutowareReposUpdater": {"componentVersion": "2.0.0", "configurationUpdate": {"merge": "{\"DeploymentID\": \"$DEPLOYMENT_ID\"}"}}}' \
-            --region ap-northeast-1 \
-            --query 'deploymentId' \
-            --output text)
+            --deployment-name "$DEPLOYMENT_ID" \
+            --components '{"AutowareReposUpdater": {"componentVersion": "3.0.0"}}' \
+            --component-configuration-update "{\"AutowareReposUpdater\":{\"merge\":{\"DeploymentID\":\"$DEPLOYMENT_ID\"}}}" \
+            --region ap-northeast-1
+
           echo "DEPLOYMENT_ID=$DEPLOYMENT_ID" >> $GITHUB_ENV
           echo "::set-output name=deployment_id::$DEPLOYMENT_ID"
-
-      # - name: Create Greengrass Deployment
-      #   id: create_deployment
-      #   run: |
-      #     DEPLOYMENT_ID=$(aws greengrassv2 create-deployment \
-      #       --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thing/lma2-unit-6 \
-      #       --deployment-name "AutowareReposUpdate-$(date +%Y-%m-%d-%H-%M-%S)" \
-      #       --components '{"AutowareReposUpdater": {"componentVersion": "2.0.0", "configurationUpdate": {"merge": "{\"DeploymentID\": \"$DEPLOYMENT_ID\"}"}}}' \
-      #       --region ap-northeast-1 \
-      #       --query 'deploymentId' \
-      #       --output text)
-      #     echo "DEPLOYMENT_ID=$DEPLOYMENT_ID" >> $GITHUB_ENV
-      #     echo "::set-output name=deployment_id::$DEPLOYMENT_ID"
 
       - name: Validate Deployment ID
         run: |
