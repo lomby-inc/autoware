@@ -52,36 +52,67 @@ jobs:
             echo "::error::Invalid Deployment ID format: $DEPLOYMENT_ID"
             exit 1
           fi
-
-
       - name: Check Deployment Status
         id: check_status
         run: |
           MAX_ATTEMPTS=30
           ATTEMPT=0
+          SLEEP_DURATION=20
+          DEPLOYMENT_ID="${{ env.DEPLOYMENT_ID }}"
+
+          # Add initial delay for deployment propagation
+          echo "Waiting 10 seconds for deployment initialization..."
+          sleep 10
+
           while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
-            STATUS=$(aws greengrassv2 get-deployment \
-              --deployment-id ${{ env.DEPLOYMENT_ID }} \
+            echo "Attempt $((ATTEMPT+1))/$MAX_ATTEMPTS"
+            
+            # Handle transient AWS API errors
+            if ! STATUS=$(aws greengrassv2 get-deployment \
+              --deployment-id "$DEPLOYMENT_ID" \
               --query 'deploymentStatus' \
-              --output text)
-            
-            echo "Attempt $((ATTEMPT+1))/$MAX_ATTEMPTS: Status: $STATUS"
-            
-            if [ "$STATUS" = "COMPLETED" ]; then
-              echo "status=SUCCESS" >> $GITHUB_OUTPUT
-              break
-            elif [ "$STATUS" = "FAILED" ]; then
-              echo "status=FAILED" >> $GITHUB_OUTPUT
-              exit 1
+              --output text 2>&1); then
+              
+              # Check for not-found error specifically
+              if [[ "$STATUS" == *"ResourceNotFoundException"* ]]; then
+                echo "Deployment not found yet, retrying..."
+                ATTEMPT=$((ATTEMPT+1))
+                sleep $SLEEP_DURATION
+                continue
+              else
+                echo "::error::AWS CLI Error: $STATUS"
+                exit 1
+              fi
             fi
+
+            echo "Current Status: $STATUS"
             
+            case "$STATUS" in
+              "COMPLETED")
+                echo "status=SUCCESS" >> $GITHUB_OUTPUT
+                break
+                ;;
+              "FAILED")
+                echo "::error::Deployment failed final status"
+                aws greengrassv2 get-deployment --deployment-id "$DEPLOYMENT_ID"
+                exit 1
+                ;;
+              "ACTIVE"|"IN_PROGRESS")
+                # Normal intermediate states
+                ;;
+              *)
+                echo "::warning::Unexpected status: $STATUS"
+                ;;
+            esac
+
             ATTEMPT=$((ATTEMPT+1))
-            sleep 20
+            sleep $SLEEP_DURATION
           done
-          
+
           if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
-            echo "status=TIMEOUT" >> $GITHUB_OUTPUT
-            exit 1  # Add explicit exit
+            echo "::error::Deployment status check timed out"
+            aws greengrassv2 get-deployment --deployment-id "$DEPLOYMENT_ID"
+            exit 1
           fi
 
       - name: Monitor Colcon Build
