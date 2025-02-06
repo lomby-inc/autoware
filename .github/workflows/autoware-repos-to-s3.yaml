@@ -29,24 +29,25 @@ jobs:
       - name: Create Greengrass Deployment
         id: create_deployment
         run: |
-          # Generate deployment ID with AWS-side validation
+          # Generate deployment ID
           DEPLOYMENT_ID="AutowareUpdate-$(date +%s)-$(openssl rand -hex 4)"
           echo "DEPLOYMENT_ID=$DEPLOYMENT_ID" >> $GITHUB_ENV
 
-          # Create deployment with structured configuration
+          # Create deployment with proper JSON escaping
           aws greengrassv2 create-deployment \
             --target-arn arn:aws:iot:ap-northeast-1:${{ secrets.AWS_ACCOUNT_ID }}:thing/lma2-unit-6 \
             --deployment-name "$DEPLOYMENT_ID" \
-            --components '{"AutowareReposUpdater": {"componentVersion": "3.0.0", "configurationUpdate": {"merge": {"DeploymentID": "'"$DEPLOYMENT_ID"'"}}}' \
+            --components '{"AutowareReposUpdater": {"componentVersion": "4.0.0", "configurationUpdate": {"merge": "{\"DeploymentID\": \"'"$DEPLOYMENT_ID"'\"}"}}}' \
             --region ap-northeast-1 \
             --output json > deployment-response.json
 
-          # Validate AWS-side deployment creation
+          # Validate deployment creation
           if ! jq -e '.deploymentId' deployment-response.json >/dev/null; then
             echo "::error::Deployment creation failed"
             cat deployment-response.json
             exit 1
           fi
+
 
       - name: Validate Deployment ID
         run: |
