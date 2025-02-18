@@ -11,11 +11,12 @@ None.
 ```bash
 # Taken from https://docs.ros.org/en/humble/Installation/Ubuntu-Development-Setup.html
 sudo apt update && sudo apt install -y \
-  python3-colcon-mixin \
   python3-flake8-docstrings \
   python3-pip \
   python3-pytest-cov \
-  ros-dev-tools \
+  ros-dev-tools
+
+sudo apt install -y \
   python3-flake8-blind-except \
   python3-flake8-builtins \
   python3-flake8-class-newline \
