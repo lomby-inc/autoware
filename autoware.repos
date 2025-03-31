@@ -212,3 +212,11 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_rt_imu_driver.git
     version: c7cb1acf383fe5384da11b4e66987a845a8b51cf
+  lomby_autoware/vehicle/lomby_sim_launch:
+    type: git
+    url: git@github.com:lomby-inc/lomby_sim_launch.git
+    version: main
+  lomby_autoware/sensor_kit/awsim_labs_sensor_kit_launch:
+    type: git
+    url: git@github.com:lomby-inc/awsim_labs_sensor_kit_launch.git
+    version: main
