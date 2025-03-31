@@ -131,11 +131,11 @@ repositories:
     type: git
     url: https://github.com/autowarefoundation/autoware_individual_params.git
     version: 95019952513934a7653a2575c864ec4ace2f87b9
+  # LOMBY
   param/lomby_autoware_individual_params:
     type: git
     url: git@github.com:lomby-inc/lomby_autoware_individual_params.git
-    version: LMA1
-  # lomby
+    version: lomby-sim  
   lomby_autoware/core/ros2_qos_tools:
     type: git
     url: git@github.com:lomby-inc/ros2_qos_tools.git
@@ -216,7 +216,7 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_sim_launch.git
     version: main
-  lomby_autoware/sensor_kit/awsim_labs_sensor_kit_launch:
+  lomby_autoware/sensor_kit/lomby_sim_sensor_kit_launch:
     type: git
-    url: git@github.com:lomby-inc/awsim_labs_sensor_kit_launch.git
+    url: git@github.com:lomby-inc/lomby_sim_sensor_kit_launch.git
     version: main
