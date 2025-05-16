@@ -33,8 +33,8 @@ repositories:
     version: d02c63cc555046f6a3d1feb44fdb94c780c3753c
   universe/autoware.universe:
     type: git
-    url: git@github.com:autowarefoundation/autoware.universe.git
-    version: 89d0a516502b980368cadd2739260e766dd2e129
+    url: git@github.com:lomby-inc/autoware.universe.git
+    version: b409c3993969ae50fd3c072629cca5edc84e1159
   universe/external/tier4_ad_api_adaptor:
     type: git
     url: https://github.com/tier4/tier4_ad_api_adaptor.git
@@ -143,7 +143,7 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: e043b0f35cca73676f80018078e0a8ec77e9f4b7
+    version: c503be9969a9ab8fa149c5a4d17dd1b56589ecbf
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
@@ -167,7 +167,7 @@ repositories:
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: f23e3b707527d7fbf95d7e585b8001d7b1e43d2a
+    version: efdcde241ed282d950ed09ae341cab97d5e72415
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
