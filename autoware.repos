@@ -167,7 +167,7 @@ repositories:
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: efdcde241ed282d950ed09ae341cab97d5e72415
+    version: b5ec4fdae90242634474a65b6b828210ab7cb532
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
