@@ -199,7 +199,7 @@ repositories:
   lomby_autoware/sensor_component/slamtec:
     type: git
     url: git@github.com:lomby-inc/sllidar_ros2.git
-    version: 0d342c5910ccb0dbae6d34288cf9539cd4c7ce5c
+    version: 75f07382cf3070c7227589df08ad8f7a0de60de4
   lomby_autoware/sensor_component/hokuyo:
     type: git
     url: https://github.com/Hokuyo-aut/urg_node2.git
