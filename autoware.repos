@@ -34,7 +34,7 @@ repositories:
   universe/autoware.universe:
     type: git
     url: git@github.com:lomby-inc/autoware.universe.git
-    version: 8ef0083e49062e072ad6c08b2e4209520bcfcfaf
+    version: b18f5e7df587e05f586eacdc5c0b076805edee81
   universe/external/tier4_ad_api_adaptor:
     type: git
     url: https://github.com/tier4/tier4_ad_api_adaptor.git
@@ -143,7 +143,7 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: 31372963998f85c8e01856edea5f1b46bf45786f
+    version: 0629ab1b80579c71fa5d4a55c412b06ead44ef25
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
@@ -175,7 +175,7 @@ repositories:
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: d25d1d80c3ed26528551b00c6cafe15615e123b2
+    version: 4f1ffdeb306be500a450f2c398c9e5a771afd5af
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
@@ -207,7 +207,7 @@ repositories:
   lomby_autoware/sensor_component/slamtec:
     type: git
     url: git@github.com:lomby-inc/sllidar_ros2.git
-    version: 75f07382cf3070c7227589df08ad8f7a0de60de4
+    version: 8d72a46f281d795d2cefef85be444162e7b466b7
   lomby_autoware/sensor_component/hokuyo:
     type: git
     url: https://github.com/Hokuyo-aut/urg_node2.git
