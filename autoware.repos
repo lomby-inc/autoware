@@ -172,6 +172,10 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_custom_planner_global.git
     version: feature/nav2
+  lomby_autoware/universe/external/nav2_autoware_bt_plugins:
+    type: git
+    url: git@github.com:lomby-inc/nav2_autoware_bt_plugins.git
+    version: main
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
