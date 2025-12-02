@@ -168,10 +168,14 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/log_monitoring.git
     version: main
+  lomby_autoware/universe/external/lomby_board_ws:
+    type: git
+    url: git@github.com:lomby-inc/lomby_board_ws.git
+    version: ec8f41627eb20d7bab430b18d0a65daef56b85f3
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: 4ff2c545dc4ff40b6d354c27192edd1bcf1b5c38
+    version: d8f1d5b3ac1ee6f140785c66f0075ed549f596c2
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
