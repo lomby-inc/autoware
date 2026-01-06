@@ -219,4 +219,8 @@ repositories:
   lomby_autoware/sensor_kit/lomby_sim_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sim_sensor_kit_launch.git
+    version: mid-360
+  sensor_component/external/mid360_description:
+    type: git
+    url: git@github.com:lomby-inc/mid360_description.git
     version: main
