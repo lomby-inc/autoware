@@ -34,7 +34,7 @@ repositories:
   universe/autoware.universe:
     type: git
     url: git@github.com:lomby-inc/autoware.universe.git
-    version: 9af8fc62eb3dfb720631d063b375312dd385b524
+    version: 5bc7ecf960dd49860c9835630a2f5d0bb5927cf0
   universe/external/tier4_ad_api_adaptor:
     type: git
     url: https://github.com/tier4/tier4_ad_api_adaptor.git
@@ -143,11 +143,11 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: 37a558544008d7b6ff990edec4d388bc1335f8e4
+    version: cdc7f57fdd23396f4253981318f092f9c76bb8d3
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
-    version: main
+    version: d09762451ad40fc1b94a442c403925751f137eea
   lomby_autoware/universe/external/ntrip_client:
     type: git
     url: https://github.com/LORD-MicroStrain/ntrip_client.git
@@ -164,10 +164,22 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_zero_mq_converter.git
     version: main
+  lomby_autoware/universe/external/lomby_nav2_custom_planner:
+    type: git
+    url: git@github.com:lomby-inc/lomby_nav2_custom_planner.git
+    version: 1b1e0decef4ed04f34bd79638c5bddf03ba72ef1
+  lomby_autoware/universe/external/lomby_custom_planner_global:
+    type: git
+    url: git@github.com:lomby-inc/lomby_custom_planner_global.git
+    version: feature/nav2
+  lomby_autoware/universe/external/nav2_autoware_bt_plugins:
+    type: git
+    url: git@github.com:lomby-inc/nav2_autoware_bt_plugins.git
+    version: main
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: b08311fab419e6656a71a4fb4cfe12c8c23f39ef
+    version: e50f81a0bab99004e2f8f01963c61799ac4496f0
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
