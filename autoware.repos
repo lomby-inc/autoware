@@ -167,7 +167,7 @@ repositories:
   lomby_autoware/universe/external/lomby_nav2_custom_planner:
     type: git
     url: git@github.com:lomby-inc/lomby_nav2_custom_planner.git
-    version: 1b1e0decef4ed04f34bd79638c5bddf03ba72ef1
+    version: origin/feature/nav2_merge
   lomby_autoware/universe/external/lomby_custom_planner_global:
     type: git
     url: git@github.com:lomby-inc/lomby_custom_planner_global.git
@@ -211,7 +211,7 @@ repositories:
   lomby_autoware/sensor_component/slamtec:
     type: git
     url: git@github.com:lomby-inc/sllidar_ros2.git
-    version: 75f07382cf3070c7227589df08ad8f7a0de60de4
+    version: 8d72a46f281d795d2cefef85be444162e7b466b7
   lomby_autoware/sensor_component/hokuyo:
     type: git
     url: https://github.com/Hokuyo-aut/urg_node2.git
