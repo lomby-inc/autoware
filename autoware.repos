@@ -135,7 +135,7 @@ repositories:
   param/lomby_autoware_individual_params:
     type: git
     url: git@github.com:lomby-inc/lomby_autoware_individual_params.git
-    version: lomby-sim  
+    version: sim-mid360  
   lomby_autoware/core/ros2_qos_tools:
     type: git
     url: git@github.com:lomby-inc/ros2_qos_tools.git
