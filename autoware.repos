@@ -171,7 +171,7 @@ repositories:
   lomby_autoware/universe/external/lomby_board_ws:
     type: git
     url: git@github.com:lomby-inc/lomby_board_ws.git
-    version: ec8f41627eb20d7bab430b18d0a65daef56b85f3
+    version: ebcec1065edc7a253a0d8f552f22630401095ec8
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
