@@ -160,18 +160,14 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_haya_imu_converter.git
     version: d3f4d1dddaa5df4decddaba8428adb29fce9aa67
-  lomby_autoware/universe/external/lomby_zero_mq_converter:
-    type: git
-    url: git@github.com:lomby-inc/lomby_zero_mq_converter.git
-    version: main
   lomby_autoware/universe/external/log_monitoring:
     type: git
     url: git@github.com:lomby-inc/log_monitoring.git
     version: main
-  lomby_autoware/universe/external/lomby_board_ws:
+  lomby_autoware/universe/external/lomby_hw_bridge_ws:
     type: git
-    url: git@github.com:lomby-inc/lomby_board_ws.git
-    version: ebcec1065edc7a253a0d8f552f22630401095ec8
+    url: git@github.com:lomby-inc/lomby_hw_bridge_ws.git
+    version: 9dc4773454f7554b94c0c7743274fa1534026759
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
