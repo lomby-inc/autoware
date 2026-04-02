@@ -163,7 +163,7 @@ repositories:
   lomby_autoware/universe/external/log_monitoring:
     type: git
     url: git@github.com:lomby-inc/log_monitoring.git
-    version: main
+    version: feature/LMA5
   lomby_autoware/universe/external/lomby_hw_bridge_ws:
     type: git
     url: git@github.com:lomby-inc/lomby_hw_bridge_ws.git
