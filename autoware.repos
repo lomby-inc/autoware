@@ -167,7 +167,7 @@ repositories:
   lomby_autoware/universe/external/lomby_hw_bridge_ws:
     type: git
     url: git@github.com:lomby-inc/lomby_hw_bridge_ws.git
-    version: 562e63b
+    version: main
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
