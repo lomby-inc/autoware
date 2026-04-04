@@ -164,18 +164,18 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/log_monitoring.git
     version: feature/LMA5
-  lomby_autoware/universe/external/lomby_hw_bridge_ws:
+  lomby_autoware/universe/external/lomby_board_ws:
     type: git
-    url: git@github.com:lomby-inc/lomby_hw_bridge_ws.git
-    version: main
+    url: git@github.com:lomby-inc/lomby_board_ws.git
+    version: machine/LMA5
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: a84b1e543108d97728368b1c5dfca25e6ce9e36e
+    version: LMA5
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
-    version: stable/LM2.0
+    version: LMA5
   lomby_autoware/vehicle/lomby_robot_properties:
     type: git
     url: git@github.com:lomby-inc/lomby_robot_properties.git
@@ -191,7 +191,7 @@ repositories:
   lomby_autoware/sensor_component/sick:
     type: git
     url: git@github.com:lomby-inc/lomby_sick_scan_xd.git
-    version: 7f04076bcef4f29adc0beab60255259e158d08f9
+    version: 3d45075384465c085a08f284668dba558eebdf9c
   lomby_autoware/sensor_component/hesai:
     type: git
     url: https://github.com/MapIV/hesai_pandar.git
@@ -200,6 +200,10 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/HesaiLidar_ROS_2.0.git
     version: 4171deb18cf8c1c4f2550bdfad4f9f464663477d
+  lomby_autoware/sensor_component/livox:
+    type: git
+    url: git@github.com:lomby-inc/lomby_livox_ros_driver2.git
+    version: main
   lomby_autoware/sensor_component/slamtec:
     type: git
     url: git@github.com:lomby-inc/sllidar_ros2.git
