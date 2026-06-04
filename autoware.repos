@@ -171,15 +171,15 @@ repositories:
   lomby_autoware/universe/external/lomby_board_ws:
     type: git
     url: git@github.com:lomby-inc/lomby_board_ws.git
-    version: ebcec1065edc7a253a0d8f552f22630401095ec8
+    version: 6662b51984b469646351d45dec6f497956db5851
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: a84b1e543108d97728368b1c5dfca25e6ce9e36e
+    version: feature/LMA3-mid360
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
-    version: stable/LM2.0
+    version: feature/LMA3-mid360
   lomby_autoware/vehicle/lomby_robot_properties:
     type: git
     url: git@github.com:lomby-inc/lomby_robot_properties.git
@@ -191,7 +191,7 @@ repositories:
   lomby_autoware/sensor_component/ublox:
     type: git
     url: git@github.com:lomby-inc/lomby_ublox.git
-    version: 63d355cb71d284dae391d94d59dfee343eac0f74
+    version: 33dea8b7d6eee92960e3e0d8b2e1167a7755620a
   lomby_autoware/sensor_component/sick:
     type: git
     url: git@github.com:lomby-inc/lomby_sick_scan_xd.git
