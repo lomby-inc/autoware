@@ -147,7 +147,7 @@ repositories:
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
-    version: main
+    version: irayple_cleanup
   lomby_autoware/universe/external/serial-ros2:
     type: git
     url: https://github.com/RoverRobotics-forks/serial-ros2.git
