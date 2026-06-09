@@ -148,18 +148,10 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
     version: main
-  lomby_autoware/universe/external/ntrip_client:
-    type: git
-    url: https://github.com/LORD-MicroStrain/ntrip_client.git
-    version: ros2
   lomby_autoware/universe/external/serial-ros2:
     type: git
     url: https://github.com/RoverRobotics-forks/serial-ros2.git
     version: master
-  lomby_autoware/universe/external/lomby_haya_imu_converter:
-    type: git
-    url: git@github.com:lomby-inc/lomby_haya_imu_converter.git
-    version: d3f4d1dddaa5df4decddaba8428adb29fce9aa67
   lomby_autoware/universe/external/log_monitoring:
     type: git
     url: git@github.com:lomby-inc/log_monitoring.git
@@ -196,30 +188,10 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_sick_scan_xd.git
     version: 3d45075384465c085a08f284668dba558eebdf9c
-  lomby_autoware/sensor_component/hesai:
-    type: git
-    url: https://github.com/MapIV/hesai_pandar.git
-    version: ros2
-  lomby_autoware/sensor_component/hesai_official:
-    type: git
-    url: git@github.com:lomby-inc/HesaiLidar_ROS_2.0.git
-    version: 4171deb18cf8c1c4f2550bdfad4f9f464663477d
   lomby_autoware/sensor_component/livox:
     type: git
     url: git@github.com:lomby-inc/lomby_livox_ros_driver2.git
     version: main
-  lomby_autoware/sensor_component/slamtec:
-    type: git
-    url: git@github.com:lomby-inc/sllidar_ros2.git
-    version: 75f07382cf3070c7227589df08ad8f7a0de60de4
-  lomby_autoware/sensor_component/hokuyo:
-    type: git
-    url: https://github.com/Hokuyo-aut/urg_node2.git
-    version: main
-  lomby_autoware/sensor_component/hayate_imu:
-    type: git
-    url: git@github.com:lomby-inc/lomby_haya_imu_driver.git
-    version: 0c5cb853d05a9dea5dc2340dbf4e4aa3321fa801
   lomby_autoware/sensor_component/rt_imu:
     type: git
     url: git@github.com:lomby-inc/lomby_rt_imu_driver.git
