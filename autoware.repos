@@ -191,7 +191,7 @@ repositories:
   lomby_autoware/sensor_component/ublox:
     type: git
     url: git@github.com:lomby-inc/lomby_ublox.git
-    version: 63d355cb71d284dae391d94d59dfee343eac0f74
+    version: 33dea8b7d6eee92960e3e0d8b2e1167a7755620a
   lomby_autoware/sensor_component/sick:
     type: git
     url: git@github.com:lomby-inc/lomby_sick_scan_xd.git
@@ -204,6 +204,10 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/HesaiLidar_ROS_2.0.git
     version: 4171deb18cf8c1c4f2550bdfad4f9f464663477d
+  lomby_autoware/sensor_component/livox:
+    type: git
+    url: git@github.com:lomby-inc/lomby_livox_ros_driver2.git
+    version: main
   lomby_autoware/sensor_component/slamtec:
     type: git
     url: git@github.com:lomby-inc/sllidar_ros2.git
