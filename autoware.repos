@@ -159,7 +159,7 @@ repositories:
   lomby_autoware/universe/external/lomby_board_ws:
     type: git
     url: git@github.com:lomby-inc/lomby_board_ws.git
-    version: LMA5-P/main
+    version: release/lma05-m
   lomby_autoware/universe/external/zbar_ros:
     type: git
     url: git@github.com:lomby-inc/lomby_zbar_ros.git
