@@ -143,7 +143,7 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: 7fcef1b9a6c2e1e65274bc332ba40aa2eda69949
+    version: fc5f92e356e40c1f4f8a6523c77f07c64ae16205
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
@@ -171,11 +171,11 @@ repositories:
   lomby_autoware/universe/external/lomby_board_ws:
     type: git
     url: git@github.com:lomby-inc/lomby_board_ws.git
-    version: ebcec1065edc7a253a0d8f552f22630401095ec8
+    version: f9d6254932fe0710dd00b1b8a6031fd5105ed86d
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: a84b1e543108d97728368b1c5dfca25e6ce9e36e
+    version: ab62358a15d1bf2f79a2ea2e14a447d4cf97a982
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
