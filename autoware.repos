@@ -87,6 +87,10 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_component_description.git
     version: 8c3d13dd1b4233a50bde457dab1121922c4c8bd8
+  sensor_component/external/mid360_description:
+    type: git
+    url: git@github.com:lomby-inc/mid360_description.git
+    version: main
   sensor_component/external/tamagawa_imu_driver:
     type: git
     url: https://github.com/tier4/tamagawa_imu_driver.git
@@ -134,7 +138,7 @@ repositories:
   param/lomby_autoware_individual_params:
     type: git
     url: git@github.com:lomby-inc/lomby_autoware_individual_params.git
-    version: LMA1
+    version: sim-mid360
   # lomby
   lomby_autoware/core/ros2_qos_tools:
     type: git
@@ -164,10 +168,14 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_zbar_ros.git
     version: lomby/main
+  lomby_autoware/universe/external/moving_object_filter:
+    type: git
+    url: git@github.com:lomby-inc/lomby_moving_object_filter.git
+    version: main
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: feature/LMA5-Nav2
+    version: feature/LMA5-Nav2-sim
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
@@ -176,6 +184,14 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/lomby_vehicle_launch.git
     version: LMA5
+  lomby_autoware/sensor_kit/lomby_sim_sensor_kit_launch:
+    type: git
+    url: git@github.com:lomby-inc/lomby_sim_sensor_kit_launch.git
+    version: mid-360
+  lomby_autoware/vehicle/lomby_sim_launch:
+    type: git
+    url: git@github.com:lomby-inc/lomby_sim_launch.git
+    version: main
   lomby_autoware/sensor_component/ublox:
     type: git
     url: git@github.com:lomby-inc/lomby_ublox.git
