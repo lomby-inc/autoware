@@ -7,6 +7,69 @@ Autoware is an open-source software stack for self-driving vehicles, built on th
 
 ![Autoware architecture](https://static.wixstatic.com/media/984e93_552e338be28543c7949717053cc3f11f~mv2.png/v1/crop/x_0,y_1,w_1500,h_879/fill/w_863,h_506,al_c,usm_0.66_1.00_0.01,enc_auto/Autoware-GFX_edited.png)
 
+## Lomby: the Unity simulation branch
+
+`feature/LMA5-Nav2-sim` runs the Unity simulator (LOMBYSIM) against the LMA5-Nav2 production
+stack. It is that production branch plus the simulator's sensor kit, vehicle interface, launch
+files and rviz configuration. Nav2 plans and controls; Autoware supplies perception and
+localization.
+
+### What `autoware.repos` changes
+
+Three repositories are pinned to simulation branches rather than the production ones:
+
+| Repository | Production | Simulation |
+| --- | --- | --- |
+| `universe/autoware.universe` | `feature/LMA5-michibiki` | `feature/LMA5-michibiki-sim` |
+| `lomby_autoware/launcher/autoware_launch_lomby` | `feature/LMA5-Nav2` | `feature/LMA5-Nav2-sim` |
+| `param/lomby_autoware_individual_params` | `LMA1` | `sim-mid360` |
+
+and four are added for the simulated robot:
+
+- `lomby_autoware/sensor_kit/lomby_sim_sensor_kit_launch` @ `mid-360`
+- `lomby_autoware/vehicle/lomby_sim_launch` @ `main`
+- `sensor_component/external/mid360_description` @ `main`
+- `lomby_autoware/universe/external/moving_object_filter` @ `main`
+
+Nothing else differs from production, so `vcs import --recursive src < autoware.repos` on this
+branch gives the production workspace with the simulator dropped in.
+
+### Building and running
+
+Everything below runs inside the `ros-humble` distrobox.
+
+```bash
+colcon build --symlink-install --packages-skip sllidar_ros2 pacmod_interface
+```
+
+Start LOMBYSIM first, then, from a fresh shell:
+
+```bash
+source install/setup.bash
+source ~/ws_nav2/install/nav2_msgs/share/nav2_msgs/package.bash   # nav2_msgs only, see below
+ros2 launch autoware_launch_lomby e2e_simulator.launch.xml \
+  vehicle_model:=lomby_sim sensor_model:=lomby_sim_sensor_kit \
+  map_path:=$HOME/autoware_map/nishishinjuku_autoware_map/ \
+  launch_vehicle_interface:=true use_lidar_preprocessing:=false
+```
+
+Source only the `nav2_msgs` package out of `ws_nav2`, never the whole workspace. Autoware needs
+`nav2_msgs` from there because Humble's binary package has no `DockRobot`, but
+`nav2_system_tests` installs a `libsmoother.so` that shadows Autoware's velocity smoother, and
+the planning and control containers then exit with code 127.
+
+### The simulator has no GNSS/INS
+
+`use_autoware_pose_covariance_modifier` is **false** on this branch and has to stay that way.
+Production enables `autoware_pose_covariance_modifier` for the Michibiki/QZSS receiver; the node
+chooses between the GNSS and NDT poses by reading the GNSS standard deviations. LOMBYSIM has no
+such receiver and publishes `/sensing/gnss/pose_with_covariance` with an all-zero covariance and
+an all-zero orientation quaternion. Zero standard deviation reads as a perfect fix, so the node
+selects GNSS only, discards NDT entirely, and hands `ekf_localizer` a quaternion of length zero.
+Normalising that divides by zero, so `map -> base_link` goes out as `(x y nan)` with a NaN
+quaternion. Every tf2 listener rejects it, which costs thousands of `TF_NAN_INPUT` errors a
+second, localization, and the occupancy grid along with it.
+
 ## Documentation
 
 To learn more about using or developing Autoware, refer to the [Autoware documentation site](https://autowarefoundation.github.io/autoware-documentation/main/). You can find the source for the documentation in [autowarefoundation/autoware-documentation](https://github.com/autowarefoundation/autoware-documentation).
