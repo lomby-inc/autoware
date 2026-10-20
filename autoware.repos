@@ -34,7 +34,7 @@ repositories:
   universe/autoware.universe:
     type: git
     url: git@github.com:lomby-inc/autoware.universe.git
-    version: feature/LMA5-michibiki
+    version: feature/LMA5-fastlio
   universe/external/tier4_ad_api_adaptor:
     type: git
     url: https://github.com/tier4/tier4_ad_api_adaptor.git
@@ -151,6 +151,11 @@ repositories:
   lomby_autoware/universe/external/lomby_m_detector:
     type: git
     url: git@github.com:lomby-inc/lomby_m_detector.git
+    version: main
+  # FAST-LIO + prior-map localization (fast_lio, fast_lio_localization): pose_source fastlio
+  lomby_autoware/universe/external/fast_lio_docker:
+    type: git
+    url: https://github.com/alasdair-lomby/fast_lio_docker.git
     version: main
   lomby_autoware/universe/external/serial-ros2:
     type: git
