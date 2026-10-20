@@ -155,7 +155,7 @@ repositories:
   # FAST-LIO + prior-map localization (fast_lio, fast_lio_localization): pose_source fastlio
   lomby_autoware/universe/external/fast_lio_docker:
     type: git
-    url: https://github.com/lomby-inc/fast_lio_docker.git
+    url: git@github.com:lomby-inc/fast_lio_docker.git
     version: main
   lomby_autoware/universe/external/serial-ros2:
     type: git
