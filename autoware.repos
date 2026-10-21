@@ -180,7 +180,7 @@ repositories:
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
-    version: LMA5
+    version: feature/LMA5-fastlio
   lomby_autoware/vehicle/lomby_vehicle_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_vehicle_launch.git
