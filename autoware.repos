@@ -34,7 +34,7 @@ repositories:
   universe/autoware.universe:
     type: git
     url: git@github.com:lomby-inc/autoware.universe.git
-    version: feature/LMA5-michibiki
+    version: release/lma5/1.1.0
   universe/external/tier4_ad_api_adaptor:
     type: git
     url: https://github.com/tier4/tier4_ad_api_adaptor.git
@@ -143,15 +143,15 @@ repositories:
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
-    version: feature/LMA5-Nav2
+    version: release/lma5/1.1.0
   lomby_autoware/universe/external/vision:
     type: git
     url: git@github.com:lomby-inc/lomby_vision.git
-    version: feature/action_server_call_point_roi
+    version: release/lma5/1.1.0
   lomby_autoware/universe/external/lomby_m_detector:
     type: git
     url: git@github.com:lomby-inc/lomby_m_detector.git
-    version: main
+    version: release/lma5/1.1.0
   lomby_autoware/universe/external/serial-ros2:
     type: git
     url: https://github.com/RoverRobotics-forks/serial-ros2.git
@@ -159,27 +159,27 @@ repositories:
   lomby_autoware/universe/external/log_monitoring:
     type: git
     url: git@github.com:lomby-inc/log_monitoring.git
-    version: feature/LMA5
+    version: release/lma5/1.1.0
   lomby_autoware/universe/external/lomby_board_ws:
     type: git
     url: git@github.com:lomby-inc/lomby_board_ws.git
-    version: release/lma05-m
+    version: release/lma5/1.1.0
   lomby_autoware/universe/external/zbar_ros:
     type: git
     url: git@github.com:lomby-inc/lomby_zbar_ros.git
-    version: lomby/main
+    version: release/lma5/1.1.0
   lomby_autoware/launcher/autoware_launch_lomby:
     type: git
     url: git@github.com:lomby-inc/autoware_launch.git
-    version: feature/LMA5-Nav2
+    version: release/lma5/1.1.0
   lomby_autoware/sensor_kit/lomby_sensor_kit_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_sensor_kit_launch.git
-    version: LMA5
+    version: release/lma5/1.1.0
   lomby_autoware/vehicle/lomby_vehicle_launch:
     type: git
     url: git@github.com:lomby-inc/lomby_vehicle_launch.git
-    version: LMA5
+    version: release/lma5/1.1.0
   lomby_autoware/sensor_component/ublox:
     type: git
     url: git@github.com:lomby-inc/lomby_ublox.git
@@ -187,11 +187,11 @@ repositories:
   lomby_autoware/sensor_component/sick:
     type: git
     url: git@github.com:lomby-inc/lomby_sick_scan_xd.git
-    version: 3d45075384465c085a08f284668dba558eebdf9c
+    version: release/lma5/1.1.0
   lomby_autoware/sensor_component/livox:
     type: git
     url: git@github.com:lomby-inc/lomby_livox_ros_driver2.git
-    version: main
+    version: release/lma5/1.1.0
   lomby_autoware/sensor_component/rt_imu:
     type: git
     url: git@github.com:lomby-inc/lomby_rt_imu_driver.git
