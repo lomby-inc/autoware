@@ -143,7 +143,7 @@ repositories:
   lomby_autoware/core/lomby_nav2_msgs:
     type: git
     url: git@github.com:lomby-inc/lomby_nav2_msgs.git
-    version: main
+    version: release/lma5/1.1.0
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
