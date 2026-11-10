@@ -140,6 +140,10 @@ repositories:
     type: git
     url: git@github.com:lomby-inc/ros2_qos_tools.git
     version: fbf03db9b48009c0378803c7effa9e7df2b3ce9c
+  lomby_autoware/core/lomby_nav2_msgs:
+    type: git
+    url: git@github.com:lomby-inc/lomby_nav2_msgs.git
+    version: main
   lomby_autoware/universe/lomby.universe:
     type: git
     url: git@github.com:lomby-inc/lomby_universe.git
