@@ -46,12 +46,26 @@ Start LOMBYSIM first, then, from a fresh shell:
 
 ```bash
 source install/setup.bash
-source ~/ws_nav2/install/nav2_msgs/share/nav2_msgs/package.bash   # nav2_msgs only, see below
+source ~/dev_nav2/nav2_ws/install/nav2_msgs/share/nav2_msgs/package.bash   # nav2_msgs only, see below
 ros2 launch autoware_launch_lomby e2e_simulator.launch.xml \
   vehicle_model:=lomby_sim sensor_model:=lomby_sim_sensor_kit \
   map_path:=$HOME/autoware_map/nishishinjuku_autoware_map/ \
-  launch_vehicle_interface:=true use_lidar_preprocessing:=false
+  launch_vehicle_interface:=true use_lidar_preprocessing:=false \
+  pointcloud_map_file:=pointcloud_map.pcd pointcloud_map_metadata_file:=none.yaml
 ```
+
+The last two arguments are required for the map that ships on this machine. The launch
+defaults (`pointcloud_map` + `pointcloud_map_metadata.yaml`) describe the tiled map the
+pipeline is designed for; pointing them at the single `pointcloud_map.pcd` without also
+redirecting the metadata makes `pointcloud_map_loader` abort with
+`PCD metadata file not found`, and then NDT has no map. Use the tile directory instead
+once the tiles exist (`sim_test/tools/tile_pointcloud_map.py`), which also re-enables
+`compare_map_segmentation`.
+
+If Nav2 is driving the vehicle (the normal simulation workflow), also pass
+`control:=false planning:=false`: otherwise Autoware's `vehicle_cmd_gate` runs and
+publishes `/control/command/control_cmd` continuously, one engage call away from taking
+over from Nav2.
 
 Source only the `nav2_msgs` package out of `ws_nav2`, never the whole workspace. Autoware needs
 `nav2_msgs` from there because Humble's binary package has no `DockRobot`, but
